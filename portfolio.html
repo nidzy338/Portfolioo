@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Nida Aftab | Full Stack Developer</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#ff8800",
+          },
+          fontFamily: {
+            orbitron: ["Orbitron", "sans-serif"],
+            poppins: ["Poppins", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #050505;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      color: white;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #ff8800;
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle,
+          rgba(255, 136, 0, 0.1) 0%,
+          transparent 250%);
+      border: 2px solid rgba(255, 136, 0, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    /* PARTICLES */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particles span {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #a7600e;
+      border-radius: 50%;
+      opacity: 2;
+      animation: particles linear infinite;
+    }
+
+    @keyframes particles {
+      from {
+        transform: translateY(100vh);
+      }
+
+      to {
+        transform: translateY(-10vh);
+      }
+    }
+
+    /* ORBIT CONTAINER */
+    .orbit-container {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    /* CIRCLE RING */
+    .orbit-container::before {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: none solid rgba(255, 136, 0, 0.15);
+      box-shadow: 0 0 80px rgba(255, 136, 0, 0.08);
+    }
+
+    /* ORBIT */
+    .orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: orbitRotate 20s linear infinite;
+    }
+
+    /* ICON POSITION ON RING */
+    .icon-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(-230px);
+    }
+
+    /* ICON STYLE */
+    .tech-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
+      background: #0d0d0d;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+      transition: 0.4s;
+    }
+
+    .tech-icon:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(255, 136, 0, 0.25);
+    }
+
+    /* EQUAL SPACING */
+    .orbit1 {
+      transform: rotate(0deg);
+    }
+
+    .orbit2 {
+      transform: rotate(60deg);
+    }
+
+    .orbit3 {
+      transform: rotate(120deg);
+    }
+
+    .orbit4 {
+      transform: rotate(180deg);
+    }
+
+    .orbit5 {
+      transform: rotate(240deg);
+    }
+
+    .orbit6 {
+      transform: rotate(300deg);
+    }
+
+    /* ANIMATION */
+    @keyframes orbitRotate {
+      from {
+        rotate: 0deg;
+      }
+
+      to {
+        rotate: 360deg;
+      }
+    }
+
+    /* SKILLS */
+    .skill-tag {
+      padding: 12px 22px;
+      background: #ff8800;
+      border-radius: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: 0.4s;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 136, 0, 0.15);
+      font-size: 14px;
+    }
+
+    .skill-tag:hover {
+      transform: translateY(-5px);
+      background: #ff9d22;
+      box-shadow: 0 0 30px rgba(255, 136, 0, 0.35);
+    }
+
+    .skill-bar {
+      height: 100%;
+      background: linear-gradient(to right, #ff8800, #ffb347);
+      border-radius: 999px;
+      position: relative;
+      animation: loadBar 5s ease;
+      box-shadow: 0 0 20px rgba(255, 136, 0, 0.35);
+    }
+
+    .skill-bar::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ff8800;
+      box-shadow: 0 0 20px rgba(255, 136, 0, 0.8);
+    }
+
+    @keyframes loadBar {
+      from {
+        width: 0;
+      }
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-18px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .animate-scroll {
+      animation: scroll 50s linear infinite;
+    }
+
+    .card {
+      background: #0b0b0b;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(255, 136, 0, 0.15);
+      border-color: rgba(255, 136, 0, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CURSOR -->
+  <div class="cursor"></div>
+
+  <!-- PARTICLES -->
+  <div class="particles" id="particles"></div>
+
+  <!-- HERO -->
+  <section id="home" class="relative min-h-screen overflow-hidden">
+    <!-- BG -->
+    <div class="absolute inset-0 mt-10">
+      <img src="./picport/pic2.png" class="w-full h-full object-cover opacity-05" alt="" />
+
+      <div class="absolute inset-0 bg-black/80"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/40 border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between py-5">
+          <!-- LOGO -->
+          <h1 class="text-2xl md:text-3xl font-bold font-orbitron tracking-wide">
+            <span class="text-primary">Nida_</span>Aftab
+          </h1>
+
+          <!-- NAV -->
+          <nav class="hidden md:flex items-center gap-10 text-[15px] font-medium">
+            <a href="#home" class="text-primary"> Home </a>
+
+            <a href="#about" class="hover:text-primary transition duration-300">
+              About
+            </a>
+
+            <a href="#skills" class="hover:text-primary transition duration-300">
+              Skills
+            </a>
+
+            <a href="#projects" class="hover:text-primary transition duration-300">
+              Projects
+            </a>
+
+            <a href="#contact" class="hover:text-primary transition duration-300">
+              Contact
+            </a>
+          </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <!-- BACKGROUND -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1a1028,transparent_60%)]"></div>
+
+    <!-- HERO CONTENT -->
+    <div
+      class="relative z-10 w-[90%] mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-between gap-12">
+      <!-- LEFT CONTENT -->
+      <div class="max-w-2xl pt-28 lg:pt-0">
+        <p class="uppercase tracking-[6px] text-gray-400 mb-5 text-xs md:text-sm">
+          HELLO THERE I'M
+        </p>
+
+        <!-- HEADING -->
+        <h1 class="font-orbitron font-extrabold leading-[0.95] text-[45px] sm:text-[50px] md:text-[60px]">
+          Nida <span class="text-[#ff8800]">Aftab</span>
+        </h1>
+
+        <!-- TYPING -->
+        <h2 class="text-lg md:text-2xl mt-6 text-gray-300 font-light tracking-wide">
+          <span id="typing-text"></span>
+        </h2>
+
+        <!-- LINE -->
+        <div class="w-24 h-1 bg-[#ff8800] rounded-full mt-7"></div>
+
+        <!-- DESCRIPTION -->
+        <p class="text-gray-400 leading-8 mt-8 max-w-xl text-sm md:text-base">
+          Modern Full Stack Developer focused on creating premium websites,
+          responsive interfaces with clean UI and scalable backend systems.
+        </p>
+
+        <!-- BUTTONS -->
+        <div class="flex flex-wrap gap-5 mt-10">
+          <a href="#about"
+            class="px-7 py-3.5 bg-[#ff8800] uppercase tracking-[2px] font-semibold text-sm hover:bg-orange-600 hover:scale-105 transition duration-300 shadow-[0_0_30px_rgba(255,136,0,0.25)]">
+            ABOUT ME
+          </a>
+
+          <a href="https://wa.me/923075394580" target="_blank"
+            class="px-7 py-3.5 border border-white/30 uppercase tracking-[2px] font-semibold text-sm hover:bg-white hover:text-black hover:scale-105 transition duration-300">
+            LET'S CHAT
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT IMAGE -->
+      <div class="relative flex justify-center items-end w-full lg:w-[45%] mt-25 lg:mt-0">
+        <!-- GLOW -->
+        <div class="absolute w-[300px] h-[300px] bg-[#ff8800]/20 blur-[120px] rounded-full animate-pulse"></div>
+
+
+      </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="relative py-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8"> <!-- HEADING -->
+      <div class="text-center mb-24 relative">
+        <h2
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[70px] md:text-[120px] font-black uppercase text-white/[0.06] font-orbitron tracking-[8px] select-none">
+          ABOUT
+        </h2>
+
+        <h3 class="relative z-10 text-primary uppercase tracking-[4px] font-semibold text-xl md:text-2xl">
+          WHO AM I?
+        </h3>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+        <!-- LEFT -->
+        <div class="relative flex justify-center items-center">
+          <!-- GLOW -->
+          <div class="absolute w-[320px] h-[320px] bg-primary/20 blur-[120px] rounded-full"></div>
+
+          <!-- OUTER RING -->
+          <div class="absolute w-[420px] h-[420px] rounded-full border border-primary/20"></div>
+
+          <!-- PROFILE -->
+          <div
+            class="relative w-[300px] h-[300px] rounded-full overflow-hidden border-[6px] border-primary shadow-[0_0_60px_rgba(255,136,0,0.35)]">
+            <img src="/picport/pic1.png" class="w-full h-full object-cover" alt="" />
+          </div>
+
+          <!-- ICONS -->
+          <div class="orbit-container">
+            <div class="orbit orbit1">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fab fa-html5 text-orange-500 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit orbit2">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fab fa-css3-alt text-blue-500 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit orbit3">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fab fa-js text-yellow-400 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit orbit4">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fab fa-php text-violet-400 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit orbit5">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fas fa-database text-cyan-400 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="orbit orbit6">
+              <div class="icon-box">
+                <div class="tech-icon">
+                  <i class="fab fa-laravel text-red-500 text-3xl"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div>
+          <h3 class="text-4xl md:text-5xl font-bold leading-tight mb-8">
+            Modern By Default
+          </h3>
+
+          <p class="text-gray-400 leading-8 text-[15px] mb-6">
+            I’m a passionate Full-Stack Developer specializing in PHP,
+            Laravel, JavaScript, and MySQL. I build modern, scalable, and
+            high-performance web applications with clean and maintainable
+            code. My focus is on creating responsive, user-friendly, and
+            SEO-optimized digital experiences. I enjoy turning creative ideas
+            into functional real-world solutions. 🚀
+          </p>
+
+          <!-- INFO -->
+          <div class="grid sm:grid-cols-2 gap-6 mb-10">
+            <div>
+              <h4 class="text-primary font-semibold mb-2">Name :</h4>
+
+              <p class="text-gray-300 text-sm">Nida Aftab</p>
+            </div>
+
+            <div>
+              <h4 class="text-primary font-semibold mb-2">Phone :</h4>
+
+              <p class="text-gray-300 text-sm">+92 307 5394580</p>
+            </div>
+
+            <div>
+              <h4 class="text-primary font-semibold mb-2">Email :</h4>
+
+              <p class="text-gray-300 text-sm">nidaaftab456@gmail.com</p>
+            </div>
+
+            <div>
+              <h4 class="text-primary font-semibold mb-2">Experience :</h4>
+
+              <p class="text-gray-300 text-sm">Full Stack Development</p>
+            </div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="flex flex-wrap gap-5">
+            <a href="#contact"
+              class="px-7 py-3.5 bg-primary uppercase tracking-[2px] font-semibold text-sm hover:bg-orange-600 hover:scale-105 transition duration-300 shadow-[0_0_30px_rgba(255,136,0,0.25)]">
+              HIRE ME
+            </a>
+
+            <a href="#skills"
+              class="px-7 py-3.5 border border-white/30 uppercase tracking-[2px] font-semibold text-sm hover:bg-white hover:text-black hover:scale-105 transition duration-300">
+              MY SKILLS
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="relative py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-20">
+        <div class="text-center mb-24 relative">
+          <h2
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[70px] md:text-[120px] font-black uppercase text-white/[0.06] font-orbitron tracking-[8px] select-none">
+            SKILL
+          </h2>
+
+          <h3 class="relative z-10 text-primary uppercase tracking-[4px] font-semibold text-xl md:text-2xl">
+            AREA
+          </h3>
+        </div>
+
+        <p class="max-w-2xl mx-auto text-gray-400 leading-8 text-sm md:text-base">
+          Passionate about building premium modern websites, responsive
+          interfaces and scalable backend systems.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+        <!-- TAGS -->
+        <div class="flex flex-wrap gap-5 justify-center">
+          <div class="skill-tag">HTML5</div>
+          <div class="skill-tag">CSS3</div>
+          <div class="skill-tag">JAVASCRIPT</div>
+          <div class="skill-tag">OOP</div>
+          <div class="skill-tag">PHP</div>
+          <div class="skill-tag">MYSQL</div>
+          <div class="skill-tag">LARAVEL</div>
+          <div class="skill-tag">GIT</div>
+          <div class="skill-tag">GITHUB</div>
+        </div>
+
+        <!-- BARS -->
+        <div class="space-y-10">
+          <div>
+            <div class="flex justify-between mb-3">
+              <h4 class="text-base font-semibold">HTML</h4>
+              <span class="text-primary text-sm">95%</span>
+            </div>
+
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+              <div class="skill-bar w-[95%]"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-3">
+              <h4 class="text-base font-semibold">CSS</h4>
+              <span class="text-primary text-sm">92%</span>
+            </div>
+
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+              <div class="skill-bar w-[92%]"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-3">
+              <h4 class="text-base font-semibold">JavaScript</h4>
+              <span class="text-primary text-sm">88%</span>
+            </div>
+
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+              <div class="skill-bar w-[88%]"></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-3">
+              <h4 class="text-base font-semibold">PHP</h4>
+              <span class="text-primary text-sm">85%</span>
+            </div>
+
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+              <div class="skill-bar w-[85%]"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= SERVICES ================= -->
+  <section id="services" class="relative py-28">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8"> <!-- TITLE -->
+      <div class="text-center mb-16">
+        <div class="text-center mb-24 relative">
+          <h2
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[70px] md:text-[120px] font-black uppercase text-white/[0.06] font-orbitron tracking-[8px] select-none">
+            SERVICES
+          </h2>
+
+          <h3 class="relative z-10 text-primary uppercase tracking-[4px] font-semibold text-xl md:text-2xl">
+            I PROVIDE...
+          </h3>
+        </div>
+      </div>
+
+      <!-- MOVING ROW (like your image) -->
+      <div class="overflow-hidden mb-16">
+        <div class="flex gap-7 w-[200%] animate-scroll text-primary font-semibold">
+          <span class="px-6 py-2 bg-white/5 rounded-full">Web Design ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">App Design ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">Dashboard ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">Wireframe ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">UI UX ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">Backend ✦</span>
+
+          <!-- duplicate for loop effect -->
+          <span class="px-6 py-2 bg-white/5 rounded-full">Web Design ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">App Design ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">Dashboard ✦</span>
+          <span class="px-6 py-2 bg-white/5 rounded-full">Wireframe ✦</span>
+        </div>
+      </div>
+
+      <!-- GRID CARDS -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-pen-nib text-primary"></i>
+            </div>
+            <h3 class="font-semibold">UI/UX Design</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Clean and modern user interfaces focused on experience.
+          </p>
+        </div>
+
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-code text-primary"></i>
+            </div>
+            <h3 class="font-semibold">Web Development</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Responsive and scalable websites using modern stack.
+          </p>
+        </div>
+
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-server text-primary"></i>
+            </div>
+            <h3 class="font-semibold">Backend Systems</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Secure PHP & MySQL backend architecture.
+          </p>
+        </div>
+
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-database text-primary"></i>
+            </div>
+            <h3 class="font-semibold">Database Design</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Optimized and structured MySQL database solutions.
+          </p>
+        </div>
+
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-mobile-alt text-primary"></i>
+            </div>
+            <h3 class="font-semibold">Responsive Design</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Fully responsive layouts for all devices.
+          </p>
+        </div>
+
+        <!-- CARD -->
+        <div
+          class="group bg-white/5 border border-white/10 p-6 rounded-2xl hover:border-primary/50 hover:shadow-[0_0_30px_rgba(255,136,0,0.15)] transition duration-500">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+              <i class="fas fa-bolt text-primary"></i>
+            </div>
+            <h3 class="font-semibold">Performance</h3>
+          </div>
+
+          <p class="text-gray-400 text-sm leading-6">
+            Fast loading and optimized web applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8"> <!-- HEADING -->
+      <div class="text-center mb-16">
+        <div class="text-center mb-24 relative">
+          <h2
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[70px] md:text-[120px] font-black uppercase text-white/[0.06] font-orbitron tracking-[8px] select-none">
+            FEATURED
+          </h2>
+
+          <h3 class="relative z-10 text-primary uppercase tracking-[4px] font-semibold text-xl md:text-2xl">
+            PROJECTS
+          </h3>
+        </div>
+
+        <p class="text-gray-400 mt-4 max-w-2xl mx-auto text-sm md:text-base leading-7">
+          Modern responsive projects crafted with premium UI, scalable
+          structure and clean development workflow.
+        </p>
+      </div>
+
+      <!-- PROJECT GRID -->
+      <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-8">
+        <!-- PROJECT 1 -->
+        <div
+          class="group bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_35px_rgba(255,115,0,0.18)]">
+          <!-- IMAGE -->
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1557821552-17105176677c" alt="ShopEase"
+              class="h-56 w-full object-cover transition duration-700 group-hover:scale-110" />
+
+            <!-- OVERLAY -->
+            <div
+              class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-3">
+              <a href="#"
+                class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium hover:scale-105 transition">
+                Live Demo
+              </a>
+
+              <a href="#"
+                class="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-medium hover:border-primary hover:text-primary transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">ShopEase</h3>
+
+            <p class="text-sm text-gray-400 leading-6">
+              Modern e-commerce platform with cart system, product management
+              and responsive dashboard.
+            </p>
+
+            <!-- STACK -->
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                HTML
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                CSS
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                JavaScript
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                PHP
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                MySQL
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div
+          class="group bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_35px_rgba(255,115,0,0.18)]">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349" alt="Feane"
+              class="h-56 w-full object-cover transition duration-700 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-3">
+              <a href="#"
+                class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium hover:scale-105 transition">
+                Live Demo
+              </a>
+
+              <a href="#"
+                class="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-medium hover:border-primary hover:text-primary transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">Feane</h3>
+
+            <p class="text-sm text-gray-400 leading-6">
+              Stylish restaurant website with smooth scrolling sections and
+              mobile responsive layout.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                HTML
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                Tailwind
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                JavaScript
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div
+          class="group bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_35px_rgba(255,115,0,0.18)]">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="EdgeCut"
+              class="h-56 w-full object-cover transition duration-700 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-3">
+              <a href="#"
+                class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium hover:scale-105 transition">
+                Live Demo
+              </a>
+
+              <a href="#"
+                class="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-medium hover:border-primary hover:text-primary transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">EdgeCut</h3>
+
+            <p class="text-sm text-gray-400 leading-6">
+              Clean business landing page designed with elegant UI and
+              interactive sections.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                HTML
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                CSS
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                JavaScript
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div
+          class="group bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl hover:border-primary/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_35px_rgba(255,115,0,0.18)]">
+          <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c" alt="DevInsight"
+              class="h-56 w-full object-cover transition duration-700 group-hover:scale-110" />
+
+            <div
+              class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center gap-3">
+              <a href="#"
+                class="px-4 py-2 rounded-full bg-primary text-white text-sm font-medium hover:scale-105 transition">
+                Live Demo
+              </a>
+
+              <a href="#"
+                class="px-4 py-2 rounded-full border border-white/20 bg-white/10 text-white text-sm font-medium hover:border-primary hover:text-primary transition">
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-3">DevInsight</h3>
+
+            <p class="text-sm text-gray-400 leading-6">
+              Developer analytics dashboard with premium UI and scalable
+              backend structure.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                PHP
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                MySQL
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                JavaScript
+              </span>
+
+              <span
+                class="px-3 py-1 text-[11px] rounded-full bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-white hover:scale-110 transition duration-300">
+                Tailwind
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="testimonials" class="relative py-24">
+    <!-- HEADING -->
+    <div class="text-center mb-20 relative flex flex-col items-center">
+      <!-- FRONT -->
+      <div class="text-center mb-24 relative">
+        <h2
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[70px] md:text-[120px] font-black uppercase text-white/[0.06] font-orbitron tracking-[8px] select-none">
+          CLIENTS
+        </h2>
+
+        <h3 class="relative z-10 text-primary uppercase tracking-[4px] font-semibold text-xl md:text-2xl">
+          FEEDBACK
+        </h3>
+      </div>
+
+      <p class="relative z-10 mt-2 max-w-3xl text-gray-400 leading-8 text-sm md:text-base">
+        What clients say about my development quality, communication and
+        project delivery.
+      </p>
+    </div>
+
+    <!-- TESTIMONIAL CARDS -->
+    <div class="w-[90%] mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- CARD -->
+      <div
+        class="group relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-orange-500/40 transition duration-500 hover:-translate-y-3">
+        <!-- glow -->
+        <div class="absolute inset-0 rounded-3xl bg-orange-500/0 group-hover:bg-orange-500/5 transition duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-1 text-orange-500 mb-5">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+
+          <p class="text-gray-400 leading-8 mb-8">
+            Nida delivered an amazing responsive website with clean code and
+            modern UI. Highly recommended.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 text-xl">
+              <i class="fas fa-user"></i>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-lg">Alex Carter</h4>
+
+              <span class="text-sm text-gray-500"> CEO, TechNova </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div
+        class="group relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-orange-500/40 transition duration-500 hover:-translate-y-3">
+        <div class="absolute inset-0 rounded-3xl bg-orange-500/0 group-hover:bg-orange-500/5 transition duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-1 text-orange-500 mb-5">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+
+          <p class="text-gray-400 leading-8 mb-8">
+            Professional communication and excellent backend development
+            skills. Project delivery was fast.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 text-xl">
+              <i class="fas fa-user"></i>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-lg">Sarah Khan</h4>
+
+              <span class="text-sm text-gray-500"> Founder, ShopEase </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div
+        class="group relative p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl hover:border-orange-500/40 transition duration-500 hover:-translate-y-3">
+        <div class="absolute inset-0 rounded-3xl bg-orange-500/0 group-hover:bg-orange-500/5 transition duration-500">
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex items-center gap-1 text-orange-500 mb-5">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+
+          <p class="text-gray-400 leading-8 mb-8">
+            One of the best frontend developers I've worked with. Smooth
+            animations and premium design quality.
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="w-14 h-14 rounded-full bg-orange-500/20 flex items-center justify-center text-orange-500 text-xl">
+              <i class="fas fa-user"></i>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-lg">Daniel Roy</h4>
+
+              <span class="text-sm text-gray-500"> Creative Director </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="relative py-28">
+    <div class="w-[90%] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <!-- LEFT INFO -->
+      <div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          Get in <span class="text-primary">Touch</span>
+        </h2>
+
+        <p class="text-gray-400 mb-10 leading-7">
+          Have questions or want to work together? Let’s build something
+          amazing 🚀
+        </p>
+
+        <!-- CONTACT CARDS -->
+        <div class="space-y-5">
+          <div class="card p-5 flex items-center justify-between rounded-xl">
+            <div class="flex items-center gap-4">
+              <i class="fa fa-envelope text-primary text-xl"></i>
+              <div>
+                <p class="text-sm text-gray-400">Email</p>
+                <p class="text-white text-sm">nidaaftab456@gmail.com</p>
+              </div>
+            </div>
+            <i class="fa fa-arrow-right text-gray-500"></i>
+          </div>
+
+          <div class="card p-5 flex items-center justify-between rounded-xl">
+            <div class="flex items-center gap-4">
+              <i class="fa fa-phone text-primary text-xl"></i>
+              <div>
+                <p class="text-sm text-gray-400">Phone</p>
+                <p class="text-white text-sm">+92 307 5394580</p>
+              </div>
+            </div>
+            <i class="fa fa-arrow-right text-gray-500"></i>
+          </div>
+
+          <div class="card p-5 flex items-center justify-between rounded-xl">
+            <div class="flex items-center gap-4">
+              <i class="fa fa-location-dot text-primary text-xl"></i>
+              <div>
+                <p class="text-sm text-gray-400">Location</p>
+                <p class="text-white text-sm">Pakistan</p>
+              </div>
+            </div>
+            <i class="fa fa-arrow-right text-gray-500"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="card p-8 rounded-2xl">
+        <h3 class="text-2xl font-semibold mb-6">Send Message</h3>
+
+        <form class="space-y-5">
+          <input type="text" placeholder="Your Name"
+            class="w-full p-4 rounded-xl bg-black/40 border border-white/10 outline-none focus:border-primary" />
+
+          <input type="email" placeholder="Your Email"
+            class="w-full p-4 rounded-xl bg-black/40 border border-white/10 outline-none focus:border-primary" />
+
+          <textarea rows="5" placeholder="Your Message"
+            class="w-full p-4 rounded-xl bg-black/40 border border-white/10 outline-none focus:border-primary"></textarea>
+
+          <button class="w-full py-3 bg-primary text-black font-semibold rounded-xl hover:scale-105 transition">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer class="relative z-10 py-12 bg-[#050505] border-t border-white/10 text-center">
+    <!-- Name -->
+    <h3 class="text-2xl font-bold text-white">
+      Nida<span class="text-[#ff9500]">_Aftab</span>
+    </h3>
+
+    <!-- Tagline -->
+    <p class="text-gray-400 mt-3 text-sm">
+      Full Stack Developer • Building modern web experiences
+    </p>
+
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-6 mt-6 text-[#ff9500] text-2xl">
+      <a href="#" class="hover:scale-110 hover:text-white transition-all duration-300">
+        <i class="fab fa-github"></i>
+      </a>
+
+      <a href="#" class="hover:scale-110 hover:text-white transition-all duration-300">
+        <i class="fab fa-linkedin"></i>
+      </a>
+
+      <a href="#" class="hover:scale-110 hover:text-white transition-all duration-300">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-24 h-[2px] bg-[#ff9500] mx-auto mt-6 rounded-full"></div>
+
+    <!-- Copyright -->
+    <p class="text-gray-500 text-xs mt-6">© 2026 All Rights Reserved</p>
+  </footer>
+
+  <script>
+    /* CURSOR */
+    const cursor = document.querySelector(".cursor");
+
+    window.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    const particles = document.getElementById("particles");
+
+    for (let i = 0; i < 70; i++) {
+      const span = document.createElement("span");
+
+      const size = Math.random() * 5 + 2;
+
+      span.style.width = size + "px";
+      span.style.height = size + "px";
+
+      span.style.left = Math.random() * 100 + "%";
+      span.style.top = Math.random() * 100 + "%";
+
+      span.style.opacity = Math.random() * 0.6 + 0.2;
+
+      span.style.animationDuration = Math.random() * 15 + 10 + "s";
+      span.style.animationDelay = Math.random() * 8 + "s";
+
+      particles.appendChild(span);
+    }
+
+    /* TYPING */
+    const typingText = document.getElementById("typing-text");
+
+    const words = [
+      "Full Stack Developer",
+      "Frontend Designer",
+      "PHP & MySQL Developer",
+      "Modern UI Creator",
+    ];
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (!deleting) {
+        typingText.textContent = currentWord.substring(0, charIndex++);
+      } else {
+        typingText.textContent = currentWord.substring(0, charIndex--);
+      }
+
+      let speed = deleting ? 50 : 100;
+
+      if (!deleting && charIndex === currentWord.length + 1) {
+        deleting = true;
+        speed = 1500;
+      }
+
+      if (deleting && charIndex === 0) {
+        deleting = false;
+
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+  </script>
+</body>
+
+</html>
