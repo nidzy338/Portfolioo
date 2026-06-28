@@ -1,0 +1,440 @@
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+  background: #050505;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #050505;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  color: white;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff8800;
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 136, 0, 0.1) 0%,
+    transparent 250%
+  );
+  border: 2px solid rgba(255, 136, 0, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* PARTICLES */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particles span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #a7600e;
+  border-radius: 50%;
+  opacity: 2;
+  animation: particles linear infinite;
+}
+
+@keyframes particles {
+  from {
+    transform: translateY(100vh);
+  }
+
+  to {
+    transform: translateY(-10vh);
+  }
+}
+
+/* ==========================================
+   ABOUT SECTION - RESPONSIVE ORBIT
+========================================== */
+
+/* Orbit Container */
+.orbit-container {
+  position: absolute;
+  width: clamp(280px, 42vw, 480px);
+  aspect-ratio: 1/1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+/* Orbit Ring */
+.orbit-container::before {
+  content: "";
+  position: absolute;
+
+  width: 73%;
+  height: 73%;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 136, 0, 0.15);
+
+  box-shadow: 0 0 80px rgba(255, 136, 0, 0.08);
+}
+
+/* Orbit */
+.orbit {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  animation: orbitRotate 20s linear infinite;
+}
+
+/* Icon Position */
+.icon-box {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%)
+    translateY(calc(clamp(280px, 42vw, 480px) / -2));
+}
+
+/* Tech Icon */
+.tech-icon {
+  width: clamp(46px, 6vw, 70px);
+  height: clamp(46px, 6vw, 70px);
+
+  border-radius: 20px;
+
+  background: #0d0d0d;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+
+  transition: 0.35s ease;
+}
+
+/* FontAwesome Icons */
+.tech-icon i {
+  font-size: clamp(22px, 3vw, 32px);
+}
+
+.tech-icon:hover {
+  transform: scale(1.08);
+
+  box-shadow: 0 0 30px rgba(255, 136, 0, 0.25);
+}
+
+/* Icon Positions */
+.orbit1 {
+  transform: rotate(0deg);
+}
+
+.orbit2 {
+  transform: rotate(60deg);
+}
+
+.orbit3 {
+  transform: rotate(120deg);
+}
+
+.orbit4 {
+  transform: rotate(180deg);
+}
+
+.orbit5 {
+  transform: rotate(240deg);
+}
+
+.orbit6 {
+  transform: rotate(300deg);
+}
+
+/* Orbit Animation */
+@keyframes orbitRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================
+   RESPONSIVE BREAKPOINTS
+========================== */
+
+@media (max-width: 1024px) {
+  .orbit-container {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orbit-container {
+    width: 340px;
+  }
+
+  .tech-icon {
+    width: 56px;
+    height: 56px;
+
+    border-radius: 18px;
+  }
+
+  .tech-icon i {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orbit-container {
+    width: 280px;
+  }
+
+  .tech-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 16px;
+  }
+
+  .tech-icon i {
+    font-size: 22px;
+  }
+}
+/* ANIMATION */
+@keyframes orbitRotate {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* ==========================================
+   SKILLS SECTION
+========================================== */
+
+/* Skill Tag */
+.skill-tag {
+  padding: 12px 22px;
+
+  background: #ff8800;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+
+  box-shadow: 0 0 20px rgba(255, 136, 0, 0.15);
+
+  white-space: nowrap;
+}
+
+.skill-tag:hover {
+  transform: translateY(-5px);
+
+  background: #ff9d22;
+
+  box-shadow: 0 0 30px rgba(255, 136, 0, 0.35);
+}
+
+/* Progress Bar */
+
+.skill-bar {
+  height: 100%;
+
+  position: relative;
+
+  border-radius: 999px;
+
+  background: linear-gradient(to right, #ff8800, #ffb347);
+
+  animation: loadBar 2s ease;
+
+  box-shadow: 0 0 20px rgba(255, 136, 0, 0.35);
+}
+
+/* Circle */
+
+.skill-bar::after {
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: #ff8800;
+
+  box-shadow: 0 0 20px rgba(255, 136, 0, 0.8);
+}
+
+/* Animation */
+
+@keyframes loadBar {
+  from {
+    width: 0;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .skill-tag {
+    padding: 11px 20px;
+
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .skill-tag {
+    padding: 10px 18px;
+
+    font-size: 13px;
+
+    border-radius: 12px;
+  }
+
+  .skill-bar::after {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 480px) {
+  .skill-tag {
+    padding: 9px 16px;
+
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+  }
+
+  .skill-bar::after {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@keyframes loadBar {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-scroll {
+  animation: scroll 50s linear infinite;
+}
+
+.card {
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(255, 136, 0, 0.15);
+  border-color: rgba(255, 136, 0, 0.3);
+}
